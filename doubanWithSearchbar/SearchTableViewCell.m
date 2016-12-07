@@ -21,7 +21,7 @@
     // Configure the view for the selected state
 }
 
-- ( void ) setBooksToCell : ( bookObject * ) mybook
+- ( void ) setBooksToCell : ( Book* ) mybook
 {
 	//------------ set values ------------------
 	_bookTitleLabel.text      = mybook.bookTitle ;

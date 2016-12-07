@@ -15,6 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookPublisherLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bookPagesLabel;
 
-- ( void ) setBooksToCell : ( bookObject * ) mybook ;
+- ( void ) setBooksToCell : ( Book * ) mybook ;
 
 @end

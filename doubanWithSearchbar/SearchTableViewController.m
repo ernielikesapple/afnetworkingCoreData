@@ -7,13 +7,16 @@
 //
 
 #import "SearchTableViewController.h"
-
+#import <MagicalRecord/MagicalRecord.h>
+#import "bookObject.h"
+#import "AppDelegate.h"
 static NSString *const CELL_IDENTIFER = @"search_cell";
 
 @interface SearchTableViewController () <UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating ,UITableViewDelegate, UITableViewDataSource>
-{
-	NSMutableArray *bookArray;  // data source from API
-}
+//{
+//	NSMutableArray *bookArray;  // data source from API
+//}
+@property (nonatomic,strong)NSArray *bookArray;
 
 @property ( nonatomic, strong ) UISearchController *searchController ;
 
@@ -49,51 +52,6 @@ static NSString *const CELL_IDENTIFER = @"search_cell";
 	return _searchController;
 }
 
-// ---------- Table view data source ----------
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
--( CGFloat ) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	return 60;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	return bookArray.count ;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	SearchTableViewCell *mycell = [ self.tableView dequeueReusableCellWithIdentifier : CELL_IDENTIFER ];
-	if ( !mycell )
-	{
-		mycell =[ [ SearchTableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFER ] ;
-	}
-	if (_searchController.active)
-	{
-		// add a book to book object
-		bookObject *newBook = [ [ bookObject alloc ] init ];
-		[ newBook addAttributes : bookArray[indexPath.row] ] ;
-		// set a book cell to table view
-		[ mycell setBooksToCell : newBook] ;
-	}
-	return mycell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	// unselect
-	[ tableView deselectRowAtIndexPath:indexPath animated:YES ] ;
-	if (self.searchController.active)
-	{
-		NSLog(@"%@", bookArray[indexPath.row]);
-	}
-	// stop search
-	self.searchController.active = NO ;
-}
 
 // ---------- End table view data source ----------
 
@@ -117,15 +75,85 @@ static NSString *const CELL_IDENTIFER = @"search_cell";
 	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 	[manager GET:final_url parameters:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
 	 {
-		 bookArray= [ responseObject valueForKey:@"books" ] ;
-		 
+        
+		 self.bookArray = [ responseObject valueForKey:@"books" ] ;
+        
+         for (NSDictionary *obj in self.bookArray) {
+             //save to dataBase
+             Book *newBook = [ Book MR_createEntity];
+             
+             [ newBook addAttributes : obj] ;
+            // NSLog(@"we have the book1111--%@",newBook);
+             NSManagedObjectContext *context = [NSManagedObjectContext MR_defaultContext];
+             [context MR_saveWithOptions:MRSaveParentContexts completion:^(BOOL contextDidSave, NSError * _Nullable error) {
+                 NSLog(@"succ!!!");
+                 dispatch_async(dispatch_get_main_queue(), ^{
+                     	 [ self.tableView reloadData ] ;
+                 });
+                 
+             }];
+             
+         }
+         
+        // [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait];
+         
 		 // This reload operation must be added
-		 [ self.tableView reloadData ] ;
+	
 		 
 	 } failure:^(NSURLSessionTask *operation, NSError *error)
 	 {
 		 NSLog(@"Error: %@", error);
 	 }];
+}
+
+
+
+
+#pragma mark - tableView
+// ---------- Table view data source ----------
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-( CGFloat ) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _bookArray.count ;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SearchTableViewCell *mycell = [ self.tableView dequeueReusableCellWithIdentifier : CELL_IDENTIFER ];
+    if ( !mycell )
+    {
+        mycell =[ [ SearchTableViewCell alloc ] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CELL_IDENTIFER ] ;
+    }
+    if (_searchController.active)
+    {
+        // add a book to book object
+        Book *newBook =  [ Book MR_createEntity];
+        [newBook addAttributes: self.bookArray[indexPath.row]];
+        // set a book cell to table view
+        [ mycell setBooksToCell : newBook] ;
+    }
+    return mycell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // unselect
+    [ tableView deselectRowAtIndexPath:indexPath animated:YES ] ;
+    if (self.searchController.active)
+    {
+        NSLog(@"%@", _bookArray[indexPath.row]);
+    }
+    // stop search
+    self.searchController.active = NO ;
 }
 
 @end

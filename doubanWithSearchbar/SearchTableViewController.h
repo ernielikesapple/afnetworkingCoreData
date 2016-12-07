@@ -10,7 +10,6 @@
 #import <AFNetworking.h>
 
 #import "SearchTableViewCell.h"
-#import "bookObject.h"
 
 @interface SearchTableViewController : UITableViewController
 

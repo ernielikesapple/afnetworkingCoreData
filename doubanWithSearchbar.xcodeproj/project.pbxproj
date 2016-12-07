@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3790B3041110DC6B22595615 /* libPods-doubanWithSearchbar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E8D1649019AB2B704B638D /* libPods-doubanWithSearchbar.a */; };
+		6DA911371DF7F4C100407A73 /* showFullHistoryViewControllerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA911361DF7F4C100407A73 /* showFullHistoryViewControllerTableViewController.m */; };
 		6DE957D31DF6BA6C001B298E /* bookObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE957D01DF6BA6C001B298E /* bookObject.m */; };
 		6DE957D41DF6BA6C001B298E /* Book+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE957D21DF6BA6C001B298E /* Book+CoreDataProperties.m */; };
-		6DE957D81DF6CDB7001B298E /* showFullHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE957D71DF6CDB7001B298E /* showFullHistoryViewController.m */; };
 		6DE957DC1DF6D292001B298E /* showFullHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DE957DB1DF6D292001B298E /* showFullHistoryTableViewCell.m */; };
 		F081FF9C1DF64C1E00B4F352 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F081FF9B1DF64C1E00B4F352 /* main.m */; };
 		F081FF9F1DF64C1E00B4F352 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F081FF9E1DF64C1E00B4F352 /* AppDelegate.m */; };
@@ -44,12 +44,12 @@
 /* Begin PBXFileReference section */
 		3E24A9F506E51BAE2C6BECC3 /* Pods-doubanWithSearchbar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-doubanWithSearchbar.release.xcconfig"; path = "Pods/Target Support Files/Pods-doubanWithSearchbar/Pods-doubanWithSearchbar.release.xcconfig"; sourceTree = "<group>"; };
 		4BE682C389793F60EB6F332A /* Pods-doubanWithSearchbar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-doubanWithSearchbar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-doubanWithSearchbar/Pods-doubanWithSearchbar.debug.xcconfig"; sourceTree = "<group>"; };
+		6DA911351DF7F4C100407A73 /* showFullHistoryViewControllerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showFullHistoryViewControllerTableViewController.h; sourceTree = "<group>"; };
+		6DA911361DF7F4C100407A73 /* showFullHistoryViewControllerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showFullHistoryViewControllerTableViewController.m; sourceTree = "<group>"; };
 		6DE957CF1DF6BA6C001B298E /* bookObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bookObject.h; path = CoreData/bookObject.h; sourceTree = "<group>"; };
 		6DE957D01DF6BA6C001B298E /* bookObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = bookObject.m; path = CoreData/bookObject.m; sourceTree = "<group>"; };
 		6DE957D11DF6BA6C001B298E /* Book+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Book+CoreDataProperties.h"; path = "CoreData/Book+CoreDataProperties.h"; sourceTree = "<group>"; };
 		6DE957D21DF6BA6C001B298E /* Book+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Book+CoreDataProperties.m"; path = "CoreData/Book+CoreDataProperties.m"; sourceTree = "<group>"; };
-		6DE957D61DF6CDB7001B298E /* showFullHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showFullHistoryViewController.h; sourceTree = "<group>"; };
-		6DE957D71DF6CDB7001B298E /* showFullHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showFullHistoryViewController.m; sourceTree = "<group>"; };
 		6DE957DA1DF6D292001B298E /* showFullHistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = showFullHistoryTableViewCell.h; sourceTree = "<group>"; };
 		6DE957DB1DF6D292001B298E /* showFullHistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = showFullHistoryTableViewCell.m; sourceTree = "<group>"; };
 		80E8D1649019AB2B704B638D /* libPods-doubanWithSearchbar.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-doubanWithSearchbar.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,10 +131,10 @@
 		6DE957D91DF6CDBE001B298E /* showFullHistoryViewController */ = {
 			isa = PBXGroup;
 			children = (
-				6DE957D61DF6CDB7001B298E /* showFullHistoryViewController.h */,
-				6DE957D71DF6CDB7001B298E /* showFullHistoryViewController.m */,
 				6DE957DA1DF6D292001B298E /* showFullHistoryTableViewCell.h */,
 				6DE957DB1DF6D292001B298E /* showFullHistoryTableViewCell.m */,
+				6DA911351DF7F4C100407A73 /* showFullHistoryViewControllerTableViewController.h */,
+				6DA911361DF7F4C100407A73 /* showFullHistoryViewControllerTableViewController.m */,
 			);
 			name = showFullHistoryViewController;
 			sourceTree = "<group>";
@@ -400,10 +400,10 @@
 				6DE957DC1DF6D292001B298E /* showFullHistoryTableViewCell.m in Sources */,
 				F081FF9F1DF64C1E00B4F352 /* AppDelegate.m in Sources */,
 				F081FF9C1DF64C1E00B4F352 /* main.m in Sources */,
+				6DA911371DF7F4C100407A73 /* showFullHistoryViewControllerTableViewController.m in Sources */,
 				F081FFDB1DF64CF700B4F352 /* SearchTableViewController.m in Sources */,
 				6DE957D31DF6BA6C001B298E /* bookObject.m in Sources */,
 				F0CCA02F1DF656EA00795E5E /* SearchTableViewCell.m in Sources */,
-				6DE957D81DF6CDB7001B298E /* showFullHistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

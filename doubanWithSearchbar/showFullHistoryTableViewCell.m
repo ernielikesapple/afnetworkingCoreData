@@ -12,11 +12,9 @@
 @interface showFullHistoryTableViewCell()
 
 @property (strong, nonatomic) IBOutlet UIImageView *bookImageFrame;
-
 @property (strong, nonatomic) IBOutlet UILabel *bookTitleLabel;
-
-@property (strong, nonatomic) IBOutlet UILabel *bookPublisherLabel;
 @property (strong, nonatomic) IBOutlet UILabel *bookPagesLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bookPublisherLabel;
 
 
 @end
